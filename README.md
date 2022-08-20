@@ -1,15 +1,5 @@
 Figma link - https://www.figma.com/file/5cucuG3IZkT5w4AxqqsRgb/%D0%94%D0%BB%D1%8F-%D0%B2%D0%B5%D1%80%D1%81%D1%82%D0%BA%D0%B8?node-id=0%3A1
 
-# CSS 410 Research tools and methods
-## Team members
-+ **Aksaule Bagytzhanova** (*180107177*)- Backend Developer/Roboticist (GitHub account: *aksaule-bagytzhanova*).
-+ **Aida Batyrkhanova** (*180107062*) - Frontend Developer/UI|UX developer (GitHub account: *Flip7418*).
-+ **Madina Kurmangaliyeva** (*180107218*) - Frontend Developer/PM manager  (GitHub account: kmmgr).
-+ **Iliyas Marat** (*180107114*) - Frontend Developer/UI|UX developer (GitHub account: *Marat Iliyas*).
-+ **Adina Turlybek** (*180107050*) - Backend Developer/Roboticist (GitHub account: *adinaturlybek*).
-
-**We also will help each other with tasks.**
-
 ## Project
 Help me, robot
 
