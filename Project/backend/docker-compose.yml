@@ -1,0 +1,65 @@
+version: '3.7'
+
+services:
+  diploma_backend:
+    container_name: backend
+    build: ./
+    volumes:
+      - ./app/:/app:rw
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8001:8000"
+    environment:
+      PROCESS: DEV_DJANGO
+    depends_on:
+      - db
+      - redis
+
+  db:
+    container_name: db
+    image: postgres:alpine3.15
+    environment:
+      POSTGRES_DB: diploma
+      POSTGRES_USER: aksi
+      POSTGRES_PASSWORD: aksi
+    logging:
+      driver: none
+    ports:
+      - "5433:5432"
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+
+  celery:
+    container_name: celery
+    build: ./
+    volumes:
+      - ./app/:/app:rw
+    command: celery -A core worker -l info
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=jsahfdasdhiolsahdiosaidhio
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - db
+      - redis
+
+  celery-beat:
+    container_name: celery-beat
+    build: ./
+    volumes:
+      - ./app/:/app:rw
+    command: celery -A core beat -l info
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=jsahfdasdhiolsahdiosaidhio
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - db
+      - redis
+
+networks:
+  default:
+    external:
+      name: diploma

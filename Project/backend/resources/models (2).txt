@@ -1,0 +1,69 @@
+BodyPart:
+id: int
+title: string
++++
+Simptom:
+id: int
+title: string
+body_part_id: int
++++
+Pill:
+id: int
+title: string
+description: string
++++
+PillSimptom:
+id: int
+pill_id: int
+simptiom_id: int
++++
+
+Point:
+point_type: string - source, destination
+x: int
+y: int
++++
+
+Order
+id: int
+order_type: string - pill / simptom
+student: Student
+created_at
+destination_point: Point
+status: string: {
+	on_moderation,
+	declined,
+	approved_and_on_queue,
+	going_to_client,
+	at_client,
+	delivered
+}
+
+description: string (расскажите что случилось?)
++++
+
+OrderPill:
+order_id: int
+pill_id: int
+count: int
++++
+
+OrderSimptom:
+order_id: int
+simptom_id: int
++++
+
+
+### LEFT
+# DOCTOR
+OrderDecision
+id: int
+order_id: int
+doctor: Doctor
+decline_reason: string | nullable
+
+
+OrderResultPill
+order_decision_id: int
+pill_id: int
+count: int

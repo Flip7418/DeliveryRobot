@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Blog</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/css/style.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css?_v=20220601012509" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+
+</head>
+<body>
+<div class="wrapper">
+    <header class="header">
+        <div class="header__container">
+            <div class="icon-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <a href="index.html" class="header__logo"><img src="../../static/img/header/Logo.svg" alt="Logo" /></a>
+            <div class="header__menu menu">
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a href="index.html" class="menu__link">HOME</a></li>
+                        <li><a href="medicine-catalog.html" class="menu__link">Medications</a></li>
+                        <li><a href="pills-body.html" class="menu__link">Order</a></li>
+                        <li><a href="about-us.html" class="menu__link">ABOUT US</a></li>
+                        <li><a href="BlogPart2.html" class="menu__link">BLOG</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header__actions actions-header">
+
+                <div class="actions-header__user user-header">
+                    <div class="user-header__icon">
+                        <img src="../../static/img/header/user.svg" alt="" />
+                    </div>
+
+                    <ul class="user-header__menu">
+                        <li><a href="profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+                        <li><a href="profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+                        <li><a href="" id="logout" class="user-header__link user-header__link_3">Exit</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="main">
+        <section class="Blog">
+            <div class="Blog__container">
+                <div class="Blog__offer offer-Blog">
+                    <div class="offer-Blog__title">You can read all about <br /><span> healthy life.</span></div>
+                    <div class="offer-Blog__image"><picture><source srcset="../../static/img/Blog/Blog-png.webp" type="image/webp"><img src="../../static/img/Blog/Blog-png.png" alt="BlogPng" /></picture></div>
+                </div>
+                <div class="Blog__content">
+                    <div class="Blog__sorter sorter-Blog">
+                        <div class="sorter-Blog__title">Sort articles by</div>
+                        <div class="sorter-Blog__sorters">
+                            <div class="sorter-Blog__sort-buttons">
+                                <button class="sort-button" id="upDate">Date</button>
+                                <button class="sort-button" id="upName">Name</button>
+                            </div>
+                            <div class="sorter-Blog__sort-search">
+                                <input type="text" id="BlogInput" placeholder="Search by ..." />
+                                <ion-icon id="searchBlog" name="search"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Blog__cards" id="Blog__cards">
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer_row">
+                <div class="footer__column">
+                    <div class="footer__logo">
+                        <img src="../../static/img/footer/footer-logo.svg" alt="footer-logo" />
+                    </div>
+                </div>
+                <div class="footer__column">
+                    <div class="footer__label">Features</div>
+                    <nav class="footer__menu menu-footer">
+                        <ul class="menu-footer__list">
+                            <li class="menu-footer__item">
+                                <a href="about-us.html" class="menu-footer__link">About us</a>
+                            </li>
+                            <li class="menu-footer__item">
+                                <a href="BlogPart2.html" class="menu-footer__link">Blog</a>
+                            </li>
+                            <li class="menu-footer__item">
+                                <a href="pills-body.html" class="menu-footer__link">Orders</a>
+                            </li>
+                            <li class="menu-footer__item">
+                                <a href="medicine-catalog.html" class="menu-footer__link">Medications</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="footer__column">
+                    <div class="footer__label">Get In Touch</div>
+                    <div class="footer__contacts contacts-footer">
+                        <a
+                                href="tel:87756574105"
+                                class="contacts-footer__item contacts-footer__item_phone"
+                        >8(775)-6574-105</a
+                        >
+                        <a href="" class="contacts-footer__item contacts-footer__item_map">
+                            Абылай хана 1/1</a
+                        >
+                        <a
+                                href="mailto:info@sdu.edu.kz"
+                                class="contacts-footer__item contacts-footer__item_email"
+                        >info@sdu.edu.kz</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+<script src="../../static/js/home.min.js?_v=20220413192659"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script>
+    if (window.localStorage.getItem('sdu_id') == null) {
+        window.location.href = 'Login.html';
+    }
+
+    let logoutButton = document.getElementById("logout")
+    logoutButton.addEventListener("click", function() {
+        window.localStorage.clear()
+        location.reload()
+    });
+
+
+</script>
+<script>
+
+
+  async function initArticles(articles) {
+    console.log(articles);
+
+    let articlesContainer = document.getElementsByClassName("Blog__cards")[0]
+    for (const key in articles) {
+      let article = articles[key]
+
+      let blogCard = document.createElement("div");
+      blogCard.className = "blog-card";
+
+      let meta = document.createElement("div");
+      meta.className = "meta";
+      let photo = document.createElement("div");
+      photo.className = "photo";
+      photo.style.backgroundImage = `url(${article["photo"]})`;
+
+        meta.appendChild(photo);
+
+      let details = document.createElement("ul");
+      details.className = "details";
+
+      let author = document.createElement("li");
+      author.className = "author";
+      author.innerText = article["author"];
+      details.appendChild(author);
+
+      let date = document.createElement("li");
+      date.className = "date";
+      article["created_at"] = new Date(article["created_at"]).toLocaleDateString();
+      date.innerText = article["created_at"];
+      details.appendChild(date);
+
+      let likes = document.createElement("li");
+      likes.className = "likes";
+      likes.innerText = article["likes_count"];
+      details.appendChild(likes);
+
+      let comments = document.createElement("li");
+      comments.className = "comments";
+      comments.innerText = article["comments_count"];
+      details.appendChild(comments);
+
+      meta.appendChild(details);
+      blogCard.appendChild(meta);
+
+      let description = document.createElement("div");
+      description.className = "description";
+
+
+      let title = document.createElement("div");
+      title.className = "title";
+      title.innerText = article["title"];
+
+      let text = document.createElement("div");
+      text.className = "text";
+      text.innerText = article["text"];
+
+      let readMore = document.createElement("div");
+      readMore.className = "read-more";
+      let readMoreA = document.createElement("a");
+      readMoreA.innerText = 'Read More';
+      readMoreA.setAttribute('href', `BlogPost.html?post=${article["id"]}`);
+      readMore.appendChild(readMoreA);
+
+      description.appendChild(title);
+      description.appendChild(text);
+      description.appendChild(readMore);
+      blogCard.appendChild(description);
+
+
+
+      articlesContainer.appendChild(blogCard);
+    }
+  }
+
+  const api_url = 'https://backend.sulaksi.kz/api/blog/article/';
+  async function getArticles() {
+    const response = await fetch(api_url, {
+      headers: {
+        'Authorization': "Bearer " + window.localStorage.getItem('token')
+      },
+    })
+
+    const data = await response.json();
+
+    if (response.status === 200) {
+
+      const {results} = data;
+      console.log(data);
+
+      await initArticles(results)
+    } else {
+      console.log(data);
+      alert('Error message: ' + "Incorrect data");
+    }
+  }
+
+  getArticles()
+
+
+</script>
+<script>
+    $("button#upName").click(function () {
+        divArr = $(".blog-card");
+        if (document.getElementById("upName").classList.contains("name-desc")) {
+            document.getElementById("upName").classList.remove("name-desc");
+            document.getElementById("upName").classList.toggle("name-asc");
+            divArr.sort(function (a, b) {
+                return $(a).find(".title").text() > $(b).find(".title").text() ? 1 : -1;
+            });
+        } else {
+            document.getElementById("upName").classList.remove("name-asc");
+            document.getElementById("upName").classList.toggle("name-desc");
+            divArr.sort(function (a, b) {
+                return $(a).find(".title").text() < $(b).find(".title").text() ? 1 : -1;
+            });
+        }
+        $(".Blog__cards").append(divArr);
+    });
+    $("button#upDate").click(function () {
+        divArr = $(".blog-card");
+        if (document.getElementById("upDate").classList.contains("date-desc")) {
+            document.getElementById("upDate").classList.remove("date-desc");
+            document.getElementById("upDate").classList.toggle("date-asc");
+            divArr.sort(function (a, b) {
+                return $(a).find(".date").text() > $(b).find(".date").text() ? 1 : -1;
+            });
+        } else {
+            document.getElementById("upDate").classList.remove("date-asc");
+            document.getElementById("upDate").classList.toggle("date-desc");
+            divArr.sort(function (a, b) {
+                return $(a).find(".date").text() < $(b).find(".date").text() ? 1 : -1;
+            });
+        }
+        $(".Blog__cards").append(divArr);
+    });
+    $("#BlogInput").keyup(function () {
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(),
+            count = 0;
+
+        // Loop through the comment list
+        $("#Blog__cards .blog-card").each(function () {
+            // If the list item does not contain the text phrase fade it out
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).hide(); // MY CHANGE
+
+                // Show the list item if the phrase matches and increase the count by 1
+            } else {
+                $(this).show(); // MY CHANGE
+                count++;
+            }
+        });
+    });
+</script>
+</body>
+</html>
+

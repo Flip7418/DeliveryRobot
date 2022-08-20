@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>"Главная"</title>
+  <link rel="stylesheet" href="../backend/static/css/style.min.css?_v=20220413192659" />
+</head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container">
+    <div class="icon-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/index.html" class="header__logo"><img src="../backend/static/img/header/Logo.svg" alt="Logo" /></a>
+    <div class="header__menu menu">
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li><a href="/index.html" class="menu__link">HOME</a></li>
+          <li><a href="/pills-body.html" class="menu__link">Medicines</a></li>
+          <li><a href="" class="menu__link">ABOUT US</a></li>
+          <li><a href="" class="menu__link">BLOG</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__actions actions-header">
+      <div class="actions-header__shopping-cart shopping-cart">
+        <a href="/med-basket.html"> <img src="../backend/static/img/header/shopping-cart.svg" alt="" /></a>
+        <div class="product-number">0</div>
+      </div>
+      <div class="actions-header__user user-header">
+        <div class="user-header__icon">
+          <img src="../backend/static/img/header/user.svg" alt="" />
+        </div>
+
+        <ul class="user-header__menu">
+          <li><a href="/profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+          <li><a href="/profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+          <li><a href="" class="user-header__link user-header__link_3">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="main">
+        <section class="med-product">
+          <div class="med-product__container">
+            <div class="med-product__image">
+              <picture><source srcset="../backend/static/img/product/Парацетомол-б.webp" type="image/webp"><img src="../backend/static/img/product/Парацетомол-б.png" alt="Pill-image" /></picture>
+            </div>
+            <div class="med-product__content">
+              <div class="med-product__info-block">
+                <div class="info-block__title">Paracetamol</div>
+                <div class="info-block__part">
+                  <div class="part__title">Pharmacotherapeutic group:</div>
+                  <div class="part__text">Non-narcotic analgesic</div>
+                </div>
+                <div class="info-block__part">
+                  <div class="part__title">Description:</div>
+                  <div class="part__text">
+                    Non-narcotic analgesic. It selectively inhibits COX by affecting pain and thermoregulation centers. In inflamed
+                    tissues, cellular peroxidases neutralize the effect of paracetamol on COX, which explains the slight
+                    anti-inflammatory effect.
+                  </div>
+                </div>
+                <div class="info-block__selective">
+                  <div class="selective__titles">
+                    <button id="indication" class="selective__titles title-1 active">Indication</button>
+                    <button id="application" class="selective__titles title-2">Application method</button>
+                  </div>
+                  <div class="border"></div>
+                  <div id="indication-text" class="selective__text-1">
+                    Low and moderate intensity pain syndrome of different genesis (headache, including migraine and tension headache,
+                    back pain, rheumatic pain, muscle pain, periodic pain in women, neuralgic pain, toothache). Relief of cold and flu
+                    symptoms, such as fever, body pain.
+                  </div>
+                  <div id="application-text" hidden="true" class="selective__text-2">
+                    For oral use. Take with plenty of fluids, 1-2 hours after eating (taking immediately after a meal will prolong the
+                    absorption time).<br />
+                    For adults and children above 12 years of age (body weight over 40 kg), a single dose is 400-1,000 mg; dosage
+                    frequency - up to 4 times a day, if necessary. Do not take more than 4,000 mg within 24 hours. For patients with
+                    impaired liver or kidney function, for elderly patients, the daily dose should be reduced and the interval between
+                    doses should be increased.
+                  </div>
+                </div>
+                <button class="make-order">Add to Shopping Cart</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+  <div class="footer__container">
+    <div class="footer_row">
+      <div class="footer__column">
+        <div class="footer__logo">
+          <img src="../backend/static/img/footer/footer-logo.svg" alt="footer-logo" />
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Features</div>
+        <nav class="footer__menu menu-footer">
+          <ul class="menu-footer__list">
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">About us</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Blog</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Orders</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Medications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Get In Touch</div>
+        <div class="footer__contacts contacts-footer">
+          <a
+            href="tel:87756574105"
+            class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+          >
+          <a href="" class="contacts-footer__item contacts-footer__item_map">
+            Абылай хана 1/1</a
+          >
+          <a
+            href="mailto:info@sdu.edu.kz"
+            class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+    <script src="../backend/static/js/product.min.js?_v=20220413192659"></script>
+    <script src="../backend/static/js/slick.min.js?_v=20220413192659"></script>
+    <script src="../backend/static/js/home.min.js?_v=20220413192659"></script>
+  </body>
+</html>

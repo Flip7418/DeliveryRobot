@@ -1,0 +1,1 @@
+in week 6, I was doing research on the site, looking for inspiration in behance and looking for UI elements for the site and trends of everything, changing the design of the site, trying to make it minimalistic

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+    <link rel="stylesheet" href="../../static/css/doctor-style.min.css?_v=20220617215520" />
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a class="Logo" href="">
+        <span class="icon">
+          <img src="../../static/img/header/LogoImg.svg" alt="" />
+        </span>
+                    <span class="title log-title">Help me, robot</span>
+                </a>
+            </li>
+            <li >
+                <a href="dashboard.html">
+                    <span class="icon"><ion-icon name="home"></ion-icon></span>
+                    <span class="title">Dashboard </span>
+                </a>
+            </li>
+            <li >
+                <a href="">
+                    <span class="icon"><ion-icon name="albums"></ion-icon></span>
+                    <span class="title">Blogs</span>
+                </a>
+            </li>
+            <li>
+                <a href="orders.html">
+                    <span class="icon"><ion-icon name="basket"></ion-icon></span>
+                    <span class="title">Orders</span>
+                </a>
+            </li>
+            <li>
+                <a href="">
+                    <span class="icon"><ion-icon name="medkit"></ion-icon></span>
+                    <span class="title">Medications</span>
+                </a>
+            </li>
+            <li id="logout">
+                <a href="">
+                    <span class="icon"><ion-icon name="log-out"></ion-icon></span>
+                    <span class="title">Sign out</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <main class="main">
+        <div class="topbar">
+            <div class="toggle"><ion-icon name="menu"></ion-icon></div>
+            <a href="" class="user"><ion-icon name="person-circle"></ion-icon></a>
+        </div>
+
+        <div class="page-title">
+            <h1>Orders List</h1>
+        </div>
+        <section class="all-orders">
+            <div class="all-orders__tableFeatures">
+                <div class="tableFeatures__tableSelects">
+                    <select class="selectMedicine">
+                        <option value="all">Order type</option>
+                        <option value="pill">pill</option>
+                        <option value="simptom">simptom</option>
+                    </select>
+                    <select class="selectStatus">
+                        <option value="all">All statuses</option>
+                        <option value="on_moderation">on_moderation</option>
+                        <option value="declined">declined</option>
+                        <option value="approved_and_on_queue">approved_and_on_queue</option>
+                        <option value="delivered">delivered</option>
+                        <option value="going_to_client">going_to_client</option>
+                        <option value="at_client">at_client</option>
+                    </select>
+                </div>
+                <div class="tableFeatures__tableSearch">
+                    <input type="text" id="myInput" placeholder="Search by ..." />
+                    <ion-icon name="search"></ion-icon>
+                </div>
+            </div>
+            <div class="all-orders__table">
+                <table id="Orderstable">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Order type</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Student</th>
+                        <th>Phone</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody class="tbodyOrders">
+
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+
+    </main>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220617215520"></script>
+<script src="../../static/js/navbar.min.js?_v=20220617215520"></script>
+<script src="../../static/js/ordersTable.min.js"></script>
+
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20220617215520"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js?_v=20220617215520"></script>
+<script>if (window.localStorage.getItem('sdu_id') == null) {
+    window.location.href = 'Login.html';
+}
+
+let logoutButton = document.getElementById("logout")
+logoutButton.addEventListener("click", function() {
+    window.localStorage.clear()
+    location.reload()
+});
+</script>
+<script>
+    async function initOrders(orders) {
+        for (var i = 1; i <= orders.length+100; i++) {
+            if (orders.find(c => c.id === i)) {
+                let ord = orders.find(c => c.id === i);
+                ord.created_at = new Date(ord.created_at).toLocaleDateString();
+
+                let ordHTML = `<tr>
+                  <td>${ord.id}</td>
+                  <td>${ord.order_type}</td>
+                  <td>${ord.created_at}</td>
+                  <td><span class="status ${ord.status}">${ord.status}</span></td>
+                  <td>${ord.student.first_name} ${ord.student.last_name} </td>
+                  <td>${ord.student.phone}</td>
+                  <td>
+                  <a href="order.html?order=${ord.id}" class="orderEdit View" >View</a></td>
+                  </tr>`;
+                document.querySelector(".tbodyOrders").insertAdjacentHTML("beforeend", ordHTML);
+
+            }
+        }
+        var $rows = $("#Orderstable tbody tr");
+        $("#myInput").keyup(function () {
+            var val = "^(?=.*\\b" + $.trim($(this).val()).split(/\s+/).join("\\b)(?=.*\\b") + ").*$",
+                reg = RegExp(val, "i"),
+                text;
+
+            $rows
+                .show()
+                .filter(function () {
+                    text = $(this).text().replace(/\s+/g, " ");
+                    return !reg.test(text);
+                })
+                .hide();
+        });
+    }
+        const api_url_orders = 'https://backend.sulaksi.kz/api/order/d-order/';
+    async function getOrders() {
+        const response = await fetch(api_url_orders , {
+            headers: {
+                'Authorization': "Bearer " + window.localStorage.getItem('token')
+            },
+        })
+        const data = await response.json();
+
+        if (response.status === 200) {
+            console.log(data);
+            await initOrders(data);
+
+        } else {
+            console.log(data)
+            alert('Error message: ' + "Incorrect data to login");
+        }
+    }
+    getOrders();
+
+</script>
+
+
+</body>
+</html>

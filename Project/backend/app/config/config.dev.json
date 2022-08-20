@@ -1,0 +1,14 @@
+{
+  "DEBUG": 1,
+  "DJANGO_LEVEL": "DEBUG",
+  "SECRET_KEY":"?",
+
+  "DB_NAME":"?",
+  "DB_USER":"?",
+  "DB_PASSWORD":"?",
+  "DB_HOST":"?",
+  "DB_PORT": 5432,
+  "DB_SCHEME": "public",
+
+  "TIME_ZONE": "Asia/Almaty"
+}

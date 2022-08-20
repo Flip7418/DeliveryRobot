@@ -1,0 +1,1 @@
+I made the frontend part of the blog as well as the 3D model and design of the new robot and since printing the robot was more complicated than we thought we changed some parts of the 3D model for easy and fast printing 

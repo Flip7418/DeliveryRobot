@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+    <link rel="stylesheet" href="../../static/css/doctor-style.min.css?_v=20220617215520" />
+  
+</head>
+
+  <body>
+    <div class="container">
+      <div class="navigation">
+  <ul>
+    <li>
+      <a class="Logo" href="">
+        <span class="icon">
+          <img src="../../static/img/header/LogoImg.svg" alt="" />
+        </span>
+        <span class="title log-title">Help me, robot</span>
+      </a>
+    </li>
+    <li >
+      <a href="dashboard.html">
+        <span class="icon"><ion-icon name="home"></ion-icon></span>
+        <span class="title">Dashboard </span>
+      </a>
+    </li>
+    <li >
+      <a href="">
+        <span class="icon"><ion-icon name="albums"></ion-icon></span>
+        <span class="title">Blogs</span>
+      </a>
+    </li>
+    <li>
+      <a href="orders.html">
+        <span class="icon"><ion-icon name="basket"></ion-icon></span>
+        <span class="title">Orders</span>
+      </a>
+    </li>
+    <li>
+      <a href="">
+        <span class="icon"><ion-icon name="medkit"></ion-icon></span>
+        <span class="title">Medications</span>
+      </a>
+    </li>
+    <li id="logout">
+      <a href="">
+        <span class="icon"><ion-icon name="log-out"></ion-icon></span>
+        <span class="title">Sign out</span>
+      </a>
+    </li>
+  </ul>
+</div>
+
+      <main class="main">
+        <div class="topbar">
+  <div class="toggle"><ion-icon name="menu"></ion-icon></div>
+  <a href="" class="user"><ion-icon name="person-circle"></ion-icon></a>
+</div>
+
+        <div class="page-title">
+          <h1>Dashboard</h1>
+        </div>
+        <section class="cardBox">
+  <div class="card">
+    <div class="statictics">
+      <div class="numbers">1</div>
+      <div class="cardName">Students</div>
+    </div>
+    <div class="iconBx">
+      <ion-icon style="color: #1F9EC6" name="people"></ion-icon>
+    </div>
+  </div>
+  <div class="card">
+    <div class="statictics">
+      <div class="numbers number-med"></div>
+      <div class="cardName">Medications</div>
+    </div>
+    <div class="iconBx">
+      <ion-icon style="color: #4CB61A" name="bandage"></ion-icon>
+    </div>
+  </div>
+  <div class="card">
+    <div class="statictics">
+      <div class="numbers number-ord"></div>
+      <div class="cardName">Orders</div>
+    </div>
+    <div class="iconBx">
+      <ion-icon style="color: #8F45C9" name="trending-up"></ion-icon>
+    </div>
+  </div>
+  <div class="card">
+    <div class="statictics">
+      <div class="numbers number-delord"></div>
+      <div class="cardName">Сompleted orders</div>
+    </div>
+    <div class="iconBx">
+      <ion-icon style="color: #CE2289" name="bar-chart"></ion-icon>
+    </div>
+  </div>
+</section>
+ <section class="recentDetails">
+  <div class="recentOrders">
+    <div class="cardHeader">
+      <h2>RecentOrders</h2>
+      <a href="orders.html" class="recentOrders__btn">View All</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Order type</td>
+          <td>Date</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody class="rec-ord">
+
+      </tbody>
+    </table>
+  </div>
+</section>
+
+      </main>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220617215520"></script>
+    <script src="../../static/js/navbar.min.js?_v=20220617215520"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js?_v=20220617215520"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js?_v=20220617215520"></script>
+<script>if (window.localStorage.getItem('sdu_id') == null) {
+  window.location.href = 'Login.html';
+}
+
+let logoutButton = document.getElementById("logout")
+logoutButton.addEventListener("click", function() {
+  window.localStorage.clear()
+  location.reload()
+});</script>
+  <script>
+    let num=0;
+    async function initPillsNumber(body) {
+
+
+      for(var i=1;i <=body.length;i++){
+        let body_part = body.find(c => c.id === parseInt(i));
+        body_part.simptoms.map(SSS);
+      }
+      document.querySelector(".number-med").innerHTML=num;    }
+    function SSS(symptom){
+      symptom.pills.map(boom);
+
+    }
+    function boom(fg){
+      num=num+1;
+    }
+    const api_url_pills = 'https://backend.sulaksi.kz/api/pill/body-part/';
+    async function getPillsNumber() {
+      const response = await fetch(api_url_pills, {
+        headers: {
+          'Authorization': "Bearer " + window.localStorage.getItem('token')
+        },
+      })
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log(data);
+        await initPillsNumber(data);
+
+      } else {
+        console.log(data)
+        alert('Error message: ' + "Incorrect data to login");
+      }
+    }
+    getPillsNumber();
+
+    async function initOrdersNumber(orders) {
+      let ooo=0;
+      document.querySelector(".number-ord").innerHTML=orders.length;
+      for(var i=1;i <=orders.length;i++){
+        if(orders.find(c => c.id === parseInt(i))){
+          let ord = orders.find(c => c.id === parseInt(i));
+          if(ord.status==="delivered"){
+            ooo=ooo+1;
+          }
+        }
+      }
+      let counter=0;
+      for(var i=0;i <=orders.length;i++){
+        if(orders.find(c => c.id === parseInt(orders.length-i))){
+          if(counter<8){
+            let ord = orders.find(c => c.id === parseInt(orders.length-i));
+            ord.created_at = new Date(ord.created_at).toLocaleDateString();
+
+            let ordHTML=`<tr>
+          <td>${ord.id}</td>
+          <td>${ord.order_type}</td>
+          <td>${ord.created_at}</td>
+          <td><span class="status ${ord.status}">${ord.status}</span></td>
+        </tr>`;
+            document.querySelector(".rec-ord").insertAdjacentHTML("beforeend",ordHTML);
+            counter=counter+1;
+          }
+          else{
+            break
+          }
+
+        }
+      }
+      document.querySelector(".number-delord").innerHTML=ooo;
+
+
+    }
+    const api_url_orders = 'https://backend.sulaksi.kz/api/order/d-order/';
+    async function getOrdersNumber() {
+      const response = await fetch(api_url_orders , {
+        headers: {
+          'Authorization': "Bearer " + window.localStorage.getItem('token')
+        },
+      })
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log(data);
+        await initOrdersNumber(data);
+
+      } else {
+        console.log(data)
+        alert('Error message: ' + "Incorrect data to login");
+      }
+    }
+    getOrdersNumber();
+
+
+
+  </script>
+  </body>
+</html>

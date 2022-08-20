@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+  <link rel="stylesheet" href="../../static/css/style.min.css" />
+</head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container">
+    <div class="icon-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="index.html" class="header__logo"><img src="../../static/img/header/Logo.svg" alt="Logo" /></a>
+    <div class="header__menu menu">
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li><a href="index.html" class="menu__link">HOME</a></li>
+          <li><a href="medicine-catalog.html" class="menu__link">Medications</a></li>
+          <li><a href="pills-body.html" class="menu__link">Order</a></li>
+          <li><a href="about-us.html" class="menu__link">ABOUT US</a></li>
+          <li><a href="BlogPart2.html" class="menu__link">BLOG</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__actions actions-header">
+      <div class="actions-header__user user-header">
+        <div class="user-header__icon">
+          <img src="../../static/img/header/user.svg" alt="" />
+        </div>
+
+        <ul class="user-header__menu">
+          <li><a href="profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+          <li><a href="profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+          <li><a href="" id="logout" class="user-header__link user-header__link_3">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="main"><section class="profile-menu">
+  <div class="profile-menu__container">
+    <nav class="profile-menu__body">
+      <ul class="profile-menu__list">
+        <li><button id="profile-details" class="profile-menu__link">Profile</button></li>
+        <li>
+          <button id="profile-ord" class="profile-menu__link">Orders</button>
+        </li>
+        <li><a href="" id="exit" class="profile-menu__link">Exit</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+ <section id="details" class="details">
+  <div class="details__container">
+    <div class="details-content">
+      <form id="usfrom" class="details-information" method="PUT" onsubmit="editProfile(event, this)">
+        <div class="details-avatar">
+          <div class="details-avatar__content">
+            <div class="details-avatar__image"><img id="avatar" src="" alt="Avatar" /></div>
+            <label id="profileImageLabel" for="profileImage" hidden="true">
+              <a class="details-avatar__button"  id="upload-button">Upload new avatar</a>
+            </label>
+          </div>
+          <input class="details-avatar__input" type="file" id="profileImage" name="photo" />
+        </div>
+        <div class="details-information__form">
+          <h2 class="details-information__title">Details</h2>
+          <div class="detailsForm-info">
+            <div class="details-information__info">
+              <label class="info-title">First Name</label>
+              <input class="info-input"  id="first_name" type="text"
+                           name="first_name" readonly />
+            </div>
+            <div class="details-information__info">
+              <label class="info-title">Last Name</label>
+              <input class="info-input" id="last_name" type="text" name="last_name" readonly />           
+            </div>
+            <div class="details-information__info">
+              <label class="info-title">ID</label>
+              <input class="info-input" id="sdu_id" type="text"
+                           name="sdu_id" required readonly />
+            </div>
+            <div class="details-information__info">
+              <label class="info-title">Specialization</label>
+              <input class="info-input" type="text" id="specialization" name="specialization"  required readonly />
+            </div>
+            <div class="details-information__info password">
+              <label class="info-title">IIN</label>
+              <input class="info-input" id="iin" type="text" name="iin" value="010722650368" required readonly />
+            </div>
+            <div class="details-information__info">
+              <label class="info-title">Phone</label>
+              <input class="info-input" id="phone" type="text" name="phone" readonly />
+            </div>
+            <div class="details-information__info">
+              <label class="info-title">Date of birth</label>
+              <input class="info-input" id="birthDate" type="date" name="birthDate" readonly />
+            </div>
+            <div class="details-information__info password">
+              <label class="info-title">Allergies</label>
+              <textarea
+                form="usfrom"
+                class="info-input"
+                id="allergy"
+                name="allergy"
+                cols="60"
+                rows="80"
+                placeholder="Comment allergy"
+                readonly
+              ></textarea>
+            </div>
+            <div id="idb" class="details-information__buttons">
+              <button class="save__button button" type="submit">Save</button>
+              <button class="cancel__button button" type="reset">Cancel</button>
+              <button class="edit__button button" type="button">Edit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+        <section id="profile-orders" class="profile-orders" hidden="true">
+          <div class="profile-orders__container">
+            <div class="profile-orders__content">
+              <h2 class="profile-orders__title">Orders</h2>
+
+              <table class="profile-orders__table user-table table-sortable">
+                <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Type</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                  <th>Location</th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody class="tbody">
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <section class="order-popup close-order-popup">
+            <div class="order-popup__container">
+              <div class="order-popup__content">
+                <h2 class="profile-orders__title">Order details</h2>
+                <div class="order-popup__order-info">
+
+                </div>
+                <button class="medicine-button back" style="margin: 20px 0 0 0; padding: 10px 24px">Back to orders</button>
+              </div>
+            </div>
+          </section>
+        </section></main>
+      <footer class="footer">
+  <div class="footer__container">
+    <div class="footer_row">
+      <div class="footer__column">
+        <div class="footer__logo">
+ <img src="../../static/img/footer/footer-logo.svg" alt="footer-logo" />        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Features</div>
+        <nav class="footer__menu menu-footer">
+          <ul class="menu-footer__list">
+            <li class="menu-footer__item">
+              <a href="about-us.html" class="menu-footer__link">About us</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="BlogPart2.html" class="menu-footer__link">Blog</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="pills-body.html" class="menu-footer__link">Orders</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="medicine-catalog.html" class="menu-footer__link">Medications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Get In Touch</div>
+        <div class="footer__contacts contacts-footer">
+          <a
+            href="tel:87756574105"
+            class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+          >
+          <a href="" class="contacts-footer__item contacts-footer__item_map">
+            Абылай хана 1/1</a
+          >
+          <a
+            href="mailto:info@sdu.edu.kz"
+            class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+    <script src="../../static/js/home.min.js"></script>
+    <script src="../../static/js/profile.min.js"></script>
+    <script>
+      if (window.localStorage.getItem('sdu_id') == null) {
+        window.location.href = 'Login.html';
+      }
+
+      let logoutButton = document.getElementById("logout")
+      logoutButton.addEventListener("click", function() {
+        window.localStorage.clear()
+        location.reload()
+      });
+      let exit = document.getElementById("exit")
+      exit.addEventListener("click", function() {
+        window.localStorage.clear()
+        location.reload()
+      });
+
+
+    </script>
+    <script>
+      const FILE_INPUT = document.querySelector("input[type=file]");
+      const AVATAR = document.getElementById("avatar");
+
+      FILE_INPUT.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+          AVATAR.src = `${reader.result}`;
+        };
+      });
+
+      (function (W) {
+        var D, form, bts, ipt;
+
+        function init() {
+          (D = W), (previous = []), (texts = []);
+          buttons = D.getElementsByClassName("details-information__buttons")[0];
+          form = D.getElementsByTagName("form")[0];
+          bts = buttons.getElementsByTagName("button");
+          ipt = form.getElementsByTagName("input");
+          text = form.getElementsByTagName("textarea");
+          form.addEventListener("submit", save, false);
+          bts[1].addEventListener("reset", cancel, false);
+          bts[2].addEventListener("click", edit, false);
+        }
+
+        function save(e) {
+          e.preventDefault();
+          buttons.classList.remove("invert");
+          form.classList.remove("invert");
+          var l = ipt.length;
+          while (l--) {
+            ipt[l].readOnly = true;
+          }
+          var b = text.length;
+          while (b--) {
+            text[b].readOnly = true;
+          }
+          previous = [];
+          texts = [];
+          document.getElementById("profileImageLabel").hidden = true;
+
+        }
+
+        function edit(e) {
+          e.preventDefault();
+          buttons.classList.add("invert");
+          form.classList.add("invert");
+          var l = ipt.length;
+          var b = text.length;
+          while (l--) {
+            previous[l] = ipt[l].value;
+            ipt[l].readOnly = false;
+          }
+          while (b--) {
+            texts[b] = text[b].value;
+            text[b].readOnly = false;
+          }
+          document.getElementById("profileImageLabel").hidden = false;
+
+
+        }
+
+        function cancel(e) {
+          buttons.classList.remove("invert");
+          form.classList.remove("invert");
+          e.preventDefault();
+          var l = ipt.length;
+          var b = text.length;
+
+          while (l--) {
+            ipt[l].value = previous[l];
+            ipt[l].readOnly = true;
+          }
+          while (b--) {
+            text[b].value = texts[b];
+            text[b].readOnly = true;
+          }
+        }
+        init();
+      })(document);
+
+
+
+    </script>
+    <script>
+	if (window.localStorage.getItem('sdu_id') == null) {
+		window.location.href = 'Login.html';
+	}
+
+	const api_url = 'https://backend.sulaksi.kz/api/student/profile/';
+
+	async function initProfile(id, allergy, birth_date, first_name, iin, last_name,
+            phone, photo, sdu_id, specialization) {
+	  document.getElementById("allergy").value = allergy;
+	  document.getElementById("first_name").value = first_name;
+	  document.getElementById("last_name").value = last_name;
+	  document.getElementById("iin").value = iin;
+	  document.getElementById("phone").value = phone;
+	  document.getElementById("sdu_id").value = sdu_id;
+	  document.getElementById("specialization").value = specialization;
+      document.getElementById("avatar").src = "https://backend.sulaksi.kz" +
+              photo;
+
+    }
+
+	async function getProfile() {
+      const response = await fetch(api_url, {
+        headers: {
+          'Authorization': "Bearer " + window.localStorage.getItem('token')
+        },
+      })
+      const data = await response.json();
+
+      if (response.status === 200) {
+          const {id, allergy, birth_date, first_name, iin, last_name,
+            phone, photo, sdu_id, specialization} = data;
+          console.log(data);
+
+          await initProfile(id, allergy, birth_date, first_name, iin,
+                last_name,
+            phone, photo, sdu_id, specialization)
+      } else {
+        console.log(data);
+        alert('Error message: ' + "Incorrect data");
+      }
+	}
+
+	getProfile()
+
+	async function editProfile(e, form) {
+		e.preventDefault();
+
+		const response = await fetch(api_url, {
+			method: 'PUT',
+			body: new FormData(form),
+            headers: {
+              'Authorization': "Bearer " + window.localStorage.getItem('token')
+            },
+		})
+		const data = await response.json();
+
+		if (response.status === 200) {
+
+			location.reload();
+        } else {
+		    console.log(data)
+			alert('Error message: ' + "Incorrect data to login");
+		}
+	}
+
+</script>
+  <script>
+
+
+    async function initTable(lol) {
+      for (let p = 1; p <= lol.length+100; p++) {
+        if(lol.find(c => c.id === p)){
+          let order = lol.find(c => c.id === p);
+          order.created_at = new Date(order.created_at).toLocaleDateString();
+          let or = `<tr>
+            <td data-label="Id">${order.id}</td>
+            <td data-label="Type">${order.order_type}</td>
+            <td data-label="Date">${order.created_at}</td>
+            <td data-label="Status">
+              <div class="status ${order.status}">${order.status}</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+            <td><a  class="medicine-button order-details" data-id="${order.id}">Details</a></td>
+          </tr>`;
+          document.querySelector(".tbody").insertAdjacentHTML("beforeend", or);
+        }
+      }
+      document.addEventListener("click", function (event) {
+        const popup = document.querySelector(".order-popup");
+
+        if (event.target.classList.contains("order-details")) {
+          event.preventDefault();
+          const id= event.target.dataset.id;
+          let order_popup=lol.find(c => c.id === parseInt(id));
+          order_popup.created_at = new Date(order_popup.created_at).toLocaleDateString();
+          let order_popup_html;
+          if(order_popup.order_type=='simptom'){
+            if(order_popup.status=="on_moderation"){
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                    <div class="order-info__order-symptoms" >
+                      <div class="order-id__title">Symptoms:</div>
+                      <div class="order-symptoms__Sblock">
+                      ${order_popup.requested_simptoms.map(ReqSimptoms).join('')}
+                      </div>
+                    </div>`;
+            }
+            else  if(order_popup.status=="declined"){
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                    <div class="order-info__order-symptoms" >
+                      <div class="order-id__title">Symptoms:</div>
+                      <div class="order-symptoms__Sblock">
+                      ${order_popup.requested_simptoms.map(ReqSimptoms).join('')}
+                      </div>
+                    </div>
+
+                    <div class="order-info__order-doctor">
+                      <div class="order-id__title">Doctor contacts:</div>
+                      <div class="order-id__text">${order_popup.doctor.first_name} ${order_popup.doctor.last_name} ${order_popup.doctor.phone}</div>
+                    </div>
+                    <div class="order-info__order-doctorCom">
+                      <div class="order-id__title">Doctor comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.decline_reason}
+                      </div>
+                    </div>`;
+            }
+            else{
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                    <div class="order-info__order-symptoms" >
+                      <div class="order-id__title">Symptoms:</div>
+                      <div class="order-symptoms__Sblock">
+                      ${order_popup.requested_simptoms.map(ReqSimptoms).join('')}
+                      </div>
+                    </div>
+                    <div class="order-info__order-symptoms">
+                  <div class="order-id__title">Accepted pills:</div>
+                  <div class="order-symptoms__Sblock">
+             ${order_popup.accepted_pills.map(ReqPills).join('')}
+                 </div>
+                  </div>
+
+                    <div class="order-info__order-doctor">
+                      <div class="order-id__title">Doctor contacts:</div>
+                      <div class="order-id__text">${order_popup.doctor.first_name} ${order_popup.doctor.last_name} ${order_popup.doctor.phone}</div>
+                    </div>
+                    `;
+            }
+          }
+          else{
+            if(order_popup.status=="on_moderation"){
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                  <div class="order-info__order-symptoms">
+                  <div class="order-id__title">Pills:</div>
+                  <div class="order-symptoms__Sblock">
+             ${order_popup.requested_pills.map(ReqPills).join('')}
+                 </div>
+                  </div>`;
+            }
+            else  if(order_popup.status=="declined"){
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                  <div class="order-info__order-symptoms">
+                  <div class="order-id__title">Pills:</div>
+                  <div class="order-symptoms__Sblock">
+             ${order_popup.requested_pills.map(ReqPills).join('')}
+                 </div>
+                  </div>
+                    <div class="order-info__order-doctor">
+                      <div class="order-id__title">Doctor contacts:</div>
+                      <div class="order-id__text">${order_popup.doctor.first_name} ${order_popup.doctor.last_name} ${order_popup.doctor.phone}</div>
+                    </div>
+                    <div class="order-info__order-doctorCom">
+                      <div class="order-id__title">Doctor comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.decline_reason}
+                      </div>
+                    </div>`;
+            }
+            else{
+              order_popup_html=`<div class="order-info__order-id">
+                      <div class="order-id__title">Id:</div>
+                      <div class="order-id__text">${order_popup.id}</div>
+                    </div>
+                    <div class="order-info__order-type">
+                      <div class="order-id__title">Order type:</div>
+                      <div class="order-id__text">${order_popup.order_type}</div>
+                    </div>
+                    <div class="order-info__order-date">
+                      <div class="order-id__title">Created at:</div>
+                      <div class="order-id__text">${order_popup.created_at}</div>
+                    </div>
+                    <div class="order-info__order-destination">
+                      <div class="order-id__title">Destination:</div>
+                      <div class="order-id__text">Red-cantin</div>
+                    </div>
+                    <div class="order-info__order-status">
+                      <div class="order-id__title">Status:</div>
+                      <div class="status ${order_popup.status} oStatus">${order_popup.status}</div>
+                    </div>
+                    <div class="order-info__order-comments">
+                      <div class="order-id__title">Comments:</div>
+                      <div class="order-comments__text">
+                        ${order_popup.description}
+                      </div>
+                    </div>
+                  <div class="order-info__order-symptoms">
+                  <div class="order-id__title">Pills:</div>
+                  <div class="order-symptoms__Sblock">
+             ${order_popup.requested_pills.map(ReqPills).join('')}
+                 </div>
+                  </div>
+                  <div class="order-info__order-symptoms">
+                  <div class="order-id__title">Accepted pills:</div>
+                  <div class="order-symptoms__Sblock">
+             ${order_popup.accepted_pills.map(ReqPills).join('')}
+                 </div>
+                  </div>
+                    <div class="order-info__order-doctor">
+                      <div class="order-id__title">Doctor contacts:</div>
+                      <div class="order-id__text">${order_popup.doctor.first_name} ${order_popup.doctor.last_name} ${order_popup.doctor.phone}</div>
+                    </div>
+                    `;
+            }
+
+          }
+
+
+          document.querySelector(".order-popup__order-info").innerHTML = order_popup_html;
+          popup.classList.remove("close-order-popup");
+          popup.classList.toggle("active-order-popup");
+
+        }
+        else if(event.target.classList.contains("back")){
+          event.preventDefault();
+          popup.classList.remove("active-order-popup");
+          popup.classList.toggle("close-order-popup");
+        }
+      });
+    }
+    function ReqSimptoms(symptom){
+      return ` <div class="Sblock__Sitem"> ${symptom.simptom}</div>`
+    }
+    function ReqPills(pill){
+      return ` <div class="Sblock__Sitem med-block">
+                <div class="med-block__med-name">${pill.pill}</div>
+                <div class="med-block__med-count">${pill.count}</div>
+              </div>`
+    }
+
+    const api_order_url = 'https://backend.sulaksi.kz/api/order/s-order/';
+
+    async function getOrders() {
+      const response = await fetch(api_order_url, {
+        headers: {
+          Authorization: "Bearer " + window.localStorage.getItem("token"),
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log(data);
+        await initTable(data);
+      } else {
+        console.log(data);
+        alert("Error message: " + "Incorrect data");
+      }
+    }
+
+    getOrders();
+  </script>
+  </body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>"Профиль"</title>
+  <link rel="stylesheet" href="../backend/static/css/style.min.css?_v=20220413192659" />
+</head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container">
+    <div class="icon-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/index.html" class="header__logo"><img src="../backend/static/img/header/Logo.svg" alt="Logo" /></a>
+    <div class="header__menu menu">
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li><a href="/index.html" class="menu__link">HOME</a></li>
+          <li><a href="/pills-body.html" class="menu__link">Medicines</a></li>
+          <li><a href="" class="menu__link">ABOUT US</a></li>
+          <li><a href="" class="menu__link">BLOG</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__actions actions-header">
+      <div class="actions-header__shopping-cart shopping-cart">
+        <a href="/med-basket.html"> <img src="../backend/static/img/header/shopping-cart.svg" alt="" /></a>
+        <div class="product-number">0</div>
+      </div>
+      <div class="actions-header__user user-header">
+        <div class="user-header__icon">
+          <img src="../backend/static/img/header/user.svg" alt="" />
+        </div>
+
+        <ul class="user-header__menu">
+          <li><a href="/profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+          <li><a href="/profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+          <li><a href="" class="user-header__link user-header__link_3">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="main"><section class="profile-menu">
+  <div class="profile-menu__container">
+    <nav class="profile-menu__body">
+      <ul class="profile-menu__list">
+        <li><button id="profile-details" class="profile-menu__link">Profile</button></li>
+        <li>
+          <button id="profile-ord" class="profile-menu__link">Orders</button>
+        </li>
+        <li><a href="" class="profile-menu__link">Exit</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+ <section id="details" class="details">
+  <div class="details__container">
+    <div class="details__content">
+      <div class="details-avatar avatar-details">
+        <div class="avatar-details__image">
+          <picture><source srcset="../backend/static/img/profile/photo.webp" type="image/webp"><img src="../backend/static/img/profile/photo.png" alt="Avatar" /></picture>
+        </div>
+        <div class="avatar-details__input">
+          <input type="file" id="fileInput" name="fileInput" />
+        </div>
+        <button class="avatar-details__button" type="button" onclick="chooseFile();">Upload new avatar</button>
+      </div>
+      <div class="details-information information-details">
+        <h2 class="information-details__title">Details</h2>
+        <form id="usfrom" class="information-details__form">
+          <div class="information-details__info">
+            <label class="info-title">First Name</label>
+            <input class="info-input" type="text" name="username" value="Username" required readonly />
+          </div>
+          <div class="information-details__info">
+            <label class="info-title">Last Name</label>
+            <input class="info-input" type="text" name="username" value="Surname" required readonly />
+          </div>
+          <div class="information-details__info">
+            <label class="info-title">Email</label>
+            <input
+              class="info-input"
+              type="email"
+              name="email"
+              id="mail"
+              required
+              pattern="[a-z0-9._%+-]+@stu.sdu.edu.kz"
+              value="email@stu.sdu.edu.kz"
+              required
+              readonly
+            />
+          </div>
+          <div class="information-details__info">
+            <label class="info-title">ID</label>
+            <input class="info-input" type="number" name="userid" value="180107062" required readonly />
+          </div>
+          <div class="information-details__info password">
+            <label class="info-title">Password</label>
+            <input class="info-input" id="password-input" type="password" name="userpass" value="Password" required readonly />
+            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+          </div>
+          <div class="information-details__info password">
+            <label class="info-title">Allergies</label>
+            <textarea
+              form="usfrom"
+              class="info-input"
+              name="allergies"
+              id=""
+              cols="60"
+              rows="80"
+              placeholder="Comment allergy"
+              readonly
+            ></textarea>
+          </div>
+          <div id="idb" class="information-details__buttons">
+            <button class="save__button button" type="submit">Save</button>
+            <button class="cancel__button button" type="reset">Cancel</button>
+            <button class="edit__button button" type="button">Edit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+ <section id="profile-orders" class="profile-orders" hidden="true">
+  <div class="profile-orders__container">
+    <div class="profile-orders__content">
+      <h2 class="profile-orders__title">Orders</h2>
+
+      <table class="profile-orders__table user-table table-sortable">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Medicine</th>
+            <th>Doctor</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Id">01</td>
+            <td data-label="Medicine">Paracetomol</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2022</td>
+            <td data-label="Status">
+              <div class="status status-inProgress">In progress</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">02</td>
+            <td data-label="Medicine">Analgin</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">02.03.2022</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">03</td>
+            <td data-label="Medicine">Noshpa</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">04.06.2022</td>
+            <td data-label="Status">
+              <div class="status status-completed">Completed</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">04</td>
+            <td data-label="Medicine">Kaltex</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2021</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">05</td>
+            <td data-label="Medicine">Polenal</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2023</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">06</td>
+            <td data-label="Medicine">Aspirin</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">07.01.2022</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">07</td>
+            <td data-label="Medicine">Mukaltin</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2022</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">08</td>
+            <td data-label="Medicine">Nolan</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2022</td>
+            <td data-label="Status">
+              <div class="status status-inProgress">In progress</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+          <tr>
+            <td data-label="Id">09</td>
+            <td data-label="Medicine">Ulinal</td>
+            <td data-label="Doctor">Mariya Kaliyeva</td>
+            <td data-label="Date">01.01.2022</td>
+            <td data-label="Status">
+              <div class="status status-declined">Declined</div>
+            </td>
+            <td data-label="Location">Red-cantin</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+</main>
+      <footer class="footer">
+  <div class="footer__container">
+    <div class="footer_row">
+      <div class="footer__column">
+        <div class="footer__logo">
+          <img src="../backend/static/img/footer/footer-logo.svg" alt="footer-logo" />
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Features</div>
+        <nav class="footer__menu menu-footer">
+          <ul class="menu-footer__list">
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">About us</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Blog</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Orders</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="" class="menu-footer__link">Medications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Get In Touch</div>
+        <div class="footer__contacts contacts-footer">
+          <a
+            href="tel:87756574105"
+            class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+          >
+          <a href="" class="contacts-footer__item contacts-footer__item_map">
+            Абылай хана 1/1</a
+          >
+          <a
+            href="mailto:info@sdu.edu.kz"
+            class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+    <script src="../backend/static/js/home.min.js?_v=20220413192659"></script>
+    <script src="../backend/static/js/profile.min.js?_v=20220413192659"></script>
+    <script>
+      function chooseFile() {
+        document.getElementById("fileInput").click();
+      }
+      (function (W) {
+        var D, form, bts, ipt;
+
+        function init() {
+          (D = W), (previous = []), (texts = []);
+          buttons = D.getElementsByClassName("information-details__buttons")[0];
+          form = D.getElementsByTagName("form")[0];
+          bts = buttons.getElementsByTagName("button");
+          ipt = form.getElementsByTagName("input");
+          text = form.getElementsByTagName("textarea");
+          form.addEventListener("submit", save, false);
+          bts[1].addEventListener("reset", cancel, false);
+          bts[2].addEventListener("click", edit, false);
+        }
+
+        function save(e) {
+          e.preventDefault();
+          buttons.classList.remove("invert");
+          form.classList.remove("invert");
+          var l = ipt.length;
+          while (l--) {
+            ipt[l].readOnly = true;
+          }
+          var b = text.length;
+          while (b--) {
+            text[b].readOnly = true;
+          }
+          previous = [];
+          texts = [];
+        }
+
+        function edit(e) {
+          e.preventDefault();
+          buttons.classList.add("invert");
+          form.classList.add("invert");
+          var l = ipt.length;
+          var b = text.length;
+          while (l--) {
+            previous[l] = ipt[l].value;
+            ipt[l].readOnly = false;
+          }
+          while (b--) {
+            texts[b] = text[b].value;
+            text[b].readOnly = false;
+          }
+        }
+
+        function cancel(e) {
+          buttons.classList.remove("invert");
+          form.classList.remove("invert");
+          e.preventDefault();
+          var l = ipt.length;
+          var b = text.length;
+
+          while (l--) {
+            ipt[l].value = previous[l];
+            ipt[l].readOnly = true;
+          }
+          while (b--) {
+            text[b].value = texts[b];
+            text[b].readOnly = true;
+          }
+        }
+        init();
+      })(document);
+      function show_hide_password(target) {
+        var input = document.getElementById("password-input");
+        if (input.getAttribute("type") == "password") {
+          target.classList.add("view");
+          input.setAttribute("type", "text");
+        } else {
+          target.classList.remove("view");
+          input.setAttribute("type", "password");
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>

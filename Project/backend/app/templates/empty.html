@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+
+  <link rel="stylesheet" href="../../static/css/style.min.css?_v=20220413192659" />
+</head>
+
+<body>
+<div class="wrapper">
+  <header class="header">
+    <div class="header__container">
+      <div class="icon-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a href="index.html" class="header__logo"><img src="../../static/img/header/Logo.svg" alt="Logo" /></a>
+      <div class="header__menu menu">
+        <nav class="menu__body">
+          <ul class="menu__list">
+            <li><a href="index.html" class="menu__link">HOME</a></li>
+            <li><a href="medicine-catalog.html" class="menu__link">Medications</a></li>
+            <li><a href="pills-body.html" class="menu__link">Order</a></li>
+            <li><a href="about-us.html" class="menu__link">ABOUT US</a></li>
+            <li><a href="BlogPart2.html" class="menu__link">BLOG</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header__actions actions-header">
+
+        <div class="actions-header__user user-header">
+          <div class="user-header__icon">
+            <img src="../../static/img/header/user.svg" alt="" />
+          </div>
+
+          <ul class="user-header__menu">
+            <li><a href="profile.html"
+                   class="user-header__link user-header__link_1">Profile</a></li>
+            <li><a href="profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+            <li><a href="" id="logout" class="user-header__link user-header__link_3">Exit
+            </a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <main class="main">
+    <section class="empty">
+      <div class="empty__container">
+        <div class="empty-img" style="background-image: url(../../static/img/result/empty.gif)" alt=" GIF"></div>
+        <div class="empty-text">You shopping cart is empty, please <br>add pills or symptoms in shopping cart.</div>
+        <button class="back medicine-button" onClick="window.location.href = 'pills-body.html';">Back to orders</button>
+      </div>
+    </section>
+
+  </main>
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer_row">
+        <div class="footer__column">
+          <div class="footer__logo">
+            <img src="../../static/img/footer/footer-logo.svg" alt="footer-logo" />
+          </div>
+        </div>
+        <div class="footer__column">
+          <div class="footer__label">Features</div>
+          <nav class="footer__menu menu-footer">
+            <ul class="menu-footer__list">
+              <li class="menu-footer__item">
+                <a href="about-us.html" class="menu-footer__link">About us</a>
+              </li>
+              <li class="menu-footer__item">
+                <a href="BlogPart2.html" class="menu-footer__link">Blog</a>
+              </li>
+              <li class="menu-footer__item">
+                <a href="pills-body.html" class="menu-footer__link">Orders</a>
+              </li>
+              <li class="menu-footer__item">
+                <a href="medicine-catalog.html" class="menu-footer__link">Medications</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="footer__column">
+          <div class="footer__label">Get In Touch</div>
+          <div class="footer__contacts contacts-footer">
+            <a
+                    href="tel:87756574105"
+                    class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+            >
+            <a href="" class="contacts-footer__item contacts-footer__item_map">
+              Абылай хана 1/1</a
+            >
+            <a
+                    href="mailto:info@sdu.edu.kz"
+                    class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+<script src="../../static/js/home.min.js?_v=20220413192659"></script>
+
+<script>
+  if (window.localStorage.getItem('sdu_id') == null) {
+    window.location.href = 'Login.html';
+  }
+
+  let logoutButton = document.getElementById("logout")
+  logoutButton.addEventListener("click", function() {
+    window.localStorage.clear()
+    location.reload()
+  });
+
+
+</script>
+</body>
+</html>

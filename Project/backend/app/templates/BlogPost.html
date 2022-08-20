@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+
+    <link rel="stylesheet" href="../../static/css/style.min.css?_v=20220413192659" />
+</head>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <body>
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container">
+    <div class="icon-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="index.html" class="header__logo"><img src="../../static/img/header/Logo.svg" alt="Logo" /></a>
+    <div class="header__menu menu">
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li><a href="index.html" class="menu__link">HOME</a></li>
+          <li><a href="medicine-catalog.html" class="menu__link">Medications</a></li>
+          <li><a href="pills-body.html" class="menu__link">Order</a></li>
+          <li><a href="about-us.html" class="menu__link">ABOUT US</a></li>
+          <li><a href="BlogPart2.html" class="menu__link">BLOG</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__actions actions-header">
+
+      <div class="actions-header__user user-header">
+        <div class="user-header__icon">
+          <img src="../../static/img/header/user.svg" alt="" />
+        </div>
+
+        <ul class="user-header__menu">
+          <li><a href="profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+          <li><a href="profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+          <li><a href="" id="logout" class="user-header__link user-header__link_3">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="main">
+        <section class="BlogPost">
+          <div class="BlogPost__container">
+
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+  <div class="footer__container">
+    <div class="footer_row">
+      <div class="footer__column">
+        <div class="footer__logo">
+          <img src="../../static/img/footer/footer-logo.svg" alt="footer-logo" />
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Features</div>
+        <nav class="footer__menu menu-footer">
+          <ul class="menu-footer__list">
+            <li class="menu-footer__item">
+              <a href="about-us.html" class="menu-footer__link">About us</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="BlogPart2.html" class="menu-footer__link">Blog</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="pills-body.html" class="menu-footer__link">Orders</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="medicine-catalog.html" class="menu-footer__link">Medications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Get In Touch</div>
+        <div class="footer__contacts contacts-footer">
+          <a
+            href="tel:87756574105"
+            class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+          >
+          <a href="" class="contacts-footer__item contacts-footer__item_map">
+            Абылай хана 1/1</a
+          >
+          <a
+            href="mailto:info@sdu.edu.kz"
+            class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+    <script src="../../static/js/home.min.js"></script>
+    <script>
+      if (window.localStorage.getItem('sdu_id') == null) {
+        window.location.href = 'Login.html';
+      }
+
+      let logoutButton = document.getElementById("logout")
+      logoutButton.addEventListener("click", function() {
+        window.localStorage.clear()
+        location.reload()
+      });
+
+
+    </script>
+    <script>
+      const PosturlParams = new URLSearchParams(window.location.search);
+      const postPos = PosturlParams.get('post');
+
+      const api_url = "https://backend.sulaksi.kz/api/blog/article/"+postPos+"/";
+
+      async function initPost(post) {
+        post.created_at = new Date(post.created_at).toLocaleDateString();
+        let postHtml =
+                `<div class="image-container" style="background-image: url(${post.photo})"></div>
+              <div class="BlogPost__content">
+              <div class="title">${post.title}</div>
+              <div class="post-details">
+                <div class="post-details__author">${post.author}</div>
+                <div class="post-details__date">${post.created_at}</div>
+              </div>
+              <div class="text">
+                ${post.text}
+              </div>
+            </div>
+            <div class="statistics">
+              <div class="statistics__likes ${post.is_liked}" onclick="addLike(event)"></div>
+              <div class="statistics__comments">${post.comments.length}</div>
+            </div>
+             <div class="comments-block">
+              <div class="comments-block__title">Comments</div>
+              <div class="comments-cards"></div>
+              <form id="new-comment" class="new-comment" method="PUT" onsubmit="newComment(event, this)">
+              <input class="post-id" id="article" type="number" name="article" value="${post.id}" readonly />
+
+                <textarea
+                  form="new-comment"
+                  class="new-comment__input"
+                  name="text"
+                  id="text"
+                  placeholder="Write a comment ...."
+                ></textarea>
+                <button class="new-comment__post" type="submit">Post a comment</button>
+              </form>
+             </div>`;
+        document.querySelector(".BlogPost__container").innerHTML = postHtml;
+        document.querySelector(".comments-cards").innerHTML = `${post.comments.map(addComments).join('')}`;
+      }
+
+
+      async function getPost() {
+        const response = await fetch(api_url, {
+          headers: {
+            Authorization: "Bearer " + window.localStorage.getItem("token"),
+          },
+        });
+
+        const data = await response.json();
+
+        if (response.status === 200) {
+
+          await initPost(data);
+        } else {
+          console.log(data);
+          alert("Error message: " + "Incorrect data");
+        }
+      }
+
+      getPost();
+
+
+      async function newComment(e, form)
+      {      e.preventDefault();
+        const responseComment = await fetch('https://backend.sulaksi.kz/api/blog/comment/', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            'Authorization': "Bearer " + window.localStorage.getItem('token')
+          },
+        })
+        const response = await fetch(api_url, {
+          headers: {
+            Authorization: "Bearer " + window.localStorage.getItem("token"),
+          },
+        });
+        const datacomment = await responseComment.json();
+        const data = await response.json();
+        await initPost(data);
+
+      }
+      function addComments(comment) {
+        comment.created_at = new Date(comment.created_at).toLocaleDateString();
+        return `<div class="comment-card">
+                  <div class="comment-card__text">${comment.text}</div>
+                  <div class="commDetails">
+                    <div class="commDetails__author">${comment.author}</div>
+                    <div class="commDetails__date">${comment.created_at}</div>
+                  </div>
+                </div>`;
+      }
+      async function addLike(e) {
+        e.preventDefault()
+        const response = await fetch(api_url, {
+          headers: {
+            Authorization: "Bearer " + window.localStorage.getItem("token"),
+          },
+        });
+        const data = await response.json()
+        if(data.is_liked === true){
+          const like_api_url = "https://backend.sulaksi.kz/api/blog/article/"+postPos+"/unlike/";
+          const responseUnLike = await fetch(like_api_url, {
+            method: 'DELETE',
+            body: JSON.stringify({
+              id: postPos,
+            }),
+            headers: {
+              'Authorization': "Bearer " + window.localStorage.getItem('token')
+            },
+          })
+          data.is_liked = false;
+          await initPost(data);
+        }
+        else{
+          const like_api_url = "https://backend.sulaksi.kz/api/blog/article/"+postPos+"/like/";
+          const responseLike = await fetch(like_api_url, {
+            method: 'POST',
+            body: JSON.stringify({
+              article: postPos,
+            }),
+            headers: {
+              'Authorization': "Bearer " + window.localStorage.getItem('token')
+            },
+          })
+          await responseLike.json();
+          data.is_liked = true;
+          await initPost(data);
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../../static/img/header/l.png" />
+  <link rel="stylesheet" href="../../static/css/style.min.css?_v=20220413192659" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <header class="header">
+  <div class="header__container">
+    <div class="icon-menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <a href="/index.html" class="header__logo"><img src="../../static/img/header/Logo.svg" alt="Logo" /></a>
+    <div class="header__menu menu">
+      <nav class="menu__body">
+        <ul class="menu__list">
+          <li><a href="index.html" class="menu__link">HOME</a></li>
+          <li><a href="medicine-catalog.html" class="menu__link">Medications</a></li>
+          <li><a href="pills-body.html" class="menu__link">Order</a></li>
+          <li><a href="about-us.html" class="menu__link">ABOUT US</a></li>
+          <li><a href="BlogPart2.html" class="menu__link">BLOG</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="header__actions actions-header">
+      <div class="actions-header__user user-header">
+        <div class="user-header__icon">
+          <img src="../../static/img/header/user.svg" alt="" />
+        </div>
+
+        <ul class="user-header__menu">
+          <li><a href="/profile.html" class="user-header__link user-header__link_1">Profile</a></li>
+          <li><a href="/profile.html" class="user-header__link user-header__link_2">Orders</a></li>
+          <li><a href="" id="logout" class="user-header__link user-header__link_3">Exit</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="main">
+        <section class="medicine-catalog">
+          <div class="medicine-catalog__container">
+            <h2 class="medicine-catalog__title home-title">All medications</h2>
+            <div class="medicine-catalog__sorters">
+              <div class="sorters__sort-buttons">
+                <select id="select-body" class="sort-buttons__select">
+                  <option value="">Body part</option>
+                  <option value="Head">Head</option>
+                  <option value="Throat">Throat</option>
+                  <option value="Stomach">Stomach</option>
+                  <option value="Muscle">Muscle</option>
+                </select>
+                <select id="select-symptom" class="sort-buttons__select">
+                  <option value="">Symptom</option>
+                  <option data-value="Head" value="Headache">Headache</option>
+                  <option data-value="Head" value="Migraine">Migraine</option>
+                  <option data-value="Throat" value="Angina">Angina</option>
+                  <option data-value="Throat" value="Cough">Cough</option>
+                  <option data-value="Throat" value="Toothache">Toothache</option>
+                  <option data-value="Stomach" value="Poisoning">Poisoning</option>
+                  <option data-value="Stomach" value="Diarrhea">Diarrhea</option>
+                  <option data-value="Muscle" value="Vomiting">Vomiting</option>
+                  <option data-value="Muscle" value="Pain-in-the-back">Pain in the back</option>
+                  <option data-value="Muscle" value="Chronic-disease">Chronic disease</option>
+                </select>
+              </div>
+              <div class="sorters__sort-search">
+                <input type="text" id="MedicineInput" placeholder="Search by ..." />
+              </div>
+            </div>
+            <div class="product-content grid-container">
+              <ul class="product-grid">
+
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+  <div class="footer__container">
+    <div class="footer_row">
+      <div class="footer__column">
+        <div class="footer__logo">
+          <img src="../../static/img/footer/footer-logo.svg" alt="footer-logo" />
+        </div>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Features</div>
+        <nav class="footer__menu menu-footer">
+          <ul class="menu-footer__list">
+            <li class="menu-footer__item">
+              <a href="about-us.html" class="menu-footer__link">About us</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="BlogPart2.html" class="menu-footer__link">Blog</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="doctor-basket.html" class="menu-footer__link">Orders</a>
+            </li>
+            <li class="menu-footer__item">
+              <a href="medicine-catalog.html" class="menu-footer__link">Medications</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer__column">
+        <div class="footer__label">Get In Touch</div>
+        <div class="footer__contacts contacts-footer">
+          <a
+            href="tel:87756574105"
+            class="contacts-footer__item contacts-footer__item_phone"
+            >8(775)-6574-105</a
+          >
+          <a href="" class="contacts-footer__item contacts-footer__item_map">
+            Абылай хана 1/1</a
+          >
+          <a
+            href="mailto:info@sdu.edu.kz"
+            class="contacts-footer__item contacts-footer__item_email"
+            >info@sdu.edu.kz</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js?_v=20220413192659"></script>
+    <script src="../../static/js/home.min.js"></script>
+    <script>
+      if (window.localStorage.getItem('sdu_id') == null) {
+      window.location.href = 'Login.html';
+    }
+
+    let logoutButton = document.getElementById("logout")
+    logoutButton.addEventListener("click", function() {
+      window.localStorage.clear()
+      location.reload()
+    });</script>
+    <script>
+      $(document).ready(function () {
+        // Save all selects' id in an array
+        // to determine which select's option and value would be changed
+        // after you select an option in another select.
+        var selectors = ["select-body", "select-symptom"];
+
+        $("select").on("change", function () {
+          var index = selectors.indexOf(this.id);
+          var value = this.value;
+
+          // check if is the last one or not
+          if (index < selectors.length - 1) {
+            var next = $("#" + selectors[index + 1]);
+
+            // Show all the options in next select
+            $(next).find("option").show();
+            if (value != "") {
+              // if this select's value is not empty
+              // hide some of the options
+              $(next)
+                      .find("option[data-value!=" + value + "]")
+                      .hide();
+            }
+          }
+        });
+      });
+      $().ready(function () {
+        $(".sort-buttons__select").on("change", function () {
+          showHide();
+        });
+      });
+
+      function showHide() {
+        // hide all rows
+        $(".product-grid__item").hide();
+        // show good row only
+        if ($("#select-body").val() != "") {
+          //class selected - check if subject seleceted
+          if ($("#select-symptom").val() != "") {
+            //class and subject selected use double selector
+            $("." + $("#select-body").val() + "." + $("#select-symptom").val()).show();
+          } else {
+            //only class selected - use category selector
+            $("." + $("#select-body").val()).show();
+          }
+        } else {
+          //only subject selected without class
+          $(".product-grid__item").show();
+        }
+      }
+
+      $("#MedicineInput").keyup(function () {
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(),
+                count = 0;
+
+        // Loop through the comment list
+        $(".product-grid__item").each(function () {
+          // If the list item does not contain the text phrase fade it out
+          if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+            $(this).hide(); // MY CHANGE
+
+            // Show the list item if the phrase matches and increase the count by 1
+          } else {
+            $(this).show(); // MY CHANGE
+            count++;
+          }
+        });
+      });
+    </script>
+  <script>
+    async function initPills(body) {
+      for(var i=1;i <=body.length;i++){
+        let body_part = body.find(c => c.id === parseInt(i));
+        document.querySelector(".product-grid").insertAdjacentHTML('beforeend', `${body_part.simptoms.map(SSS).join('')}`);
+      }
+
+      var arr = ["Head","Head","Head","Head","Head","Throat","Throat","Throat","Throat","Stomach","Stomach","Stomach","Muscle","Muscle"];
+      var simp=["Headache","Headache","Migraine","Migraine","Toothache","Angina","Angina","Cough","Colds","Poisoning","Diarrhea","Vomiting","Pain in the back","Chronic disease"];
+      $('.product-grid__item').each(function(index, element) {
+        $(element).addClass(arr[index%arr.length]);
+        $(element).addClass(simp[index%arr.length]);
+
+      });
+
+    }
+    function SSS(symptom){
+
+      return `
+              ${symptom.pills.map(AllMedP).join('')}
+              `;
+    }
+
+    function AllMedP(pill){
+
+      return `<li class="product-grid__item" data-id="${pill.id}" >
+                   <article class="product">
+                    <div class="product__image" style="background-image: url(${pill.photo})"></div>
+                    <div class="product__title">${pill.title}</div>
+                    <div class="product__infor">
+                      <div class="infor__title">The cure for:</div>
+                      <div class="infor__text"> ${pill.description}</div>
+                      <button class="product__btn make-order" onclick="location.href='med-product.html?pill=${pill.id}';">Details</button>
+                    </div>
+                  </article></li>`
+    }
+
+
+    const api_url = 'https://backend.sulaksi.kz/api/pill/body-part/';
+    async function getPills() {
+      const response = await fetch(api_url, {
+        headers: {
+          'Authorization': "Bearer " + window.localStorage.getItem('token')
+        },
+      })
+      const data = await response.json();
+
+      if (response.status === 200) {
+        console.log(data);
+        await initPills(data);
+
+      } else {
+        console.log(data)
+        alert('Error message: ' + "Incorrect data to login");
+      }
+    }
+
+
+      getPills();
+
+
+
+  </script>
+  </body>
+</html>

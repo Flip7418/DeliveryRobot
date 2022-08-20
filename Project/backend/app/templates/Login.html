@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" type="text/css" href="../../static/css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+	<img class="wave" src="../../static/img/Login_Image/wave.png">
+	<div class="container">
+		<div class="img">
+			<img src="../../static/img/Login_Image/bg.svg">
+		</div>
+		<div class="login-content">
+			<form method="POST" onsubmit="login(event, this)">
+				<img src="../../static/img/Login_Image/avatar.svg">
+				<h2 class="title">Welcome</h2>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<input type="text" class="input"
+							   placeholder="SDU ID" name="sdu_id">
+
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i"> 
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+
+           		    	<input type="password" class="input"
+							   placeholder="IIN" name="iin">
+
+            	   </div>
+            	</div>
+            	<input type="submit" class="btn" value="Login" onclick="login_submit()">
+            </form>
+        </div>
+    </div>
+<script>
+function login_submit(){
+	if (window.localStorage.getItem('sdu_id') != null) {
+		if(window.localStorage.getItem('sdu_id') ==="160000154652" )
+		{
+			window.location.replace('dashboard.html')
+
+		}
+		else{
+			window.location.replace('index.html')
+		}
+	}
+}
+
+
+
+	const api_url = 'https://backend.sulaksi.kz/api/auth/login/'
+	async function login(e, form) {
+		e.preventDefault();
+
+		const response = await fetch(api_url, {
+			method: 'POST',
+			body: new FormData(form)
+		})
+		const data = await response.json();
+
+		if (response.status === 200) {
+			const { sdu_id, iin, token} = data;
+			console.log(data);
+
+			window.localStorage.setItem('sdu_id', sdu_id);
+			window.localStorage.setItem('iin', iin);
+			window.localStorage.setItem('token', token);
+
+
+		} else {
+			alert('Error message: ' + "Incorrect data to login");
+		}
+	}
+
+</script>
+</body>
+</html>
